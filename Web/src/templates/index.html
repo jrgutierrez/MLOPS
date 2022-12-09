@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Weight</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+
+<body>
+    <div style="width: 50%; margin: auto; margin-top: 10%;">
+        <form method="post">
+            <div>
+                <div style="text-align: center;">
+                    <h3>Gender</h3>
+                </div>
+    
+                <div style="text-align: center;">
+                    <select name="genderValue">
+                        <option value="0">Female</option>
+                        <option value="1" {{ actual_gender }}>Male</option>
+                    </select>
+                </div>
+    
+                
+            </div>
+    
+            <div style="margin-top: 5%;">
+                <div style="text-align: center;">
+                    <h3>Height</h3>
+                </div>
+                <div class="slidecontainer" style="margin: auto;">
+                    <input type="range" min="130" max="210" value="{{ actual_height }}" class="slider" id="heightRange" name="heightValue">
+                    <div id="heightRangeLabel" style="text-align: center; margin-top: 10px;">
+                        <h3></h3>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 5%;">
+                <input class="button button1" type="submit" value="Predict">
+            </div>
+        </form>
+        <div style="text-align: center; margin-top: 5%;" {{ pred_hid }}>
+            <!--You can see the original data
+            <a href="https://www.dieselogasolina.com/" target="_blank">here.</a>-->
+            Prediction: {{ data }}
+        </div>
+    </div>
+    
+    
+    <script>
+        var slider = document.getElementById("heightRange");
+        var output = document.getElementById("heightRangeLabel");
+        output.innerHTML = slider.value + ' cm'; // Display the default slider value
+
+        // Update the current slider value (each time you drag the slider handle)
+        slider.oninput = function() {
+        output.innerHTML = this.value + ' cm';
+        }
+    </script>
+
+    
+</body>
+
+</html>
